@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vatcoin — обмен крипты и рублей по выгодному курсу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2a2bff;--blue2:#1b1cc9;--sun:#ffd23f;--mint:#5fe3b0;--red:#ff5a6e;--bg:#f6f4ff;--card:#fff;--ink:#0f1030;--mut:#5b5c86;--line:#dcd9f5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0e2b;--card:#17184a;--ink:#f1efff;--mut:#a3a4d6;--line:#2c2e75;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d0e2b;--card:#17184a;--ink:#f1efff;--mut:#a3a4d6;--line:#2c2e75;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.55}
+h1,h2,h3{font-family:Unbounded,Manrope,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.hero{background:var(--blue);color:#fff;overflow:hidden;position:relative}
+.hero::after{content:"";position:absolute;right:-70px;top:-40px;width:380px;height:380px;transform:rotate(14deg);background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30.5' fill='%23ffd23f'/><circle cx='32' cy='32' r='29' fill='none' stroke='%23b88700' stroke-width='2' stroke-dasharray='1.4 1.4' opacity='.55'/><circle cx='32' cy='32' r='25' fill='%232a2bff' stroke='%23fff' stroke-width='1.5'/><path d='M14.15 25.5A19 19 0 0 1 38.5 14.15M49.85 38.5A19 19 0 0 1 25.5 49.85' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round'/><path d='M36.2 17.6L41.8 15.3L39 10zM27.8 46.4L22.2 48.7L25 54z' fill='%23fff'/><path d='M25 33l5 5 9.5-10' fill='none' stroke='%23fff' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;filter:drop-shadow(0 20px 30px rgba(8,8,90,.45))}
+.hero::before{content:"";position:absolute;left:-140px;bottom:-220px;width:480px;height:480px;border-radius:50%;background:var(--mint);opacity:.35}
+.tick{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:12px 0;font-weight:800;font-size:15px}
+.tick div{display:inline-block;padding-left:100%;animation:mq 40s linear infinite;will-change:transform}
+@keyframes mq{to{transform:translateX(-100%)}}
+.feat{transition:transform .25s}.feat:hover{transform:translateY(-4px)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;position:relative;z-index:2}
+.logo{font-family:Unbounded;font-weight:900;font-size:22px;text-decoration:none}
+.logo span{background:var(--sun);color:var(--ink);padding:0 6px;border-radius:6px;margin-left:2px}
+.nav nav{display:flex;gap:22px;font-weight:600;font-size:15px}
+.nav nav a{text-decoration:none;opacity:.9}
+.hgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:36px 0 72px;position:relative;z-index:2}
+h1{font-size:clamp(34px,6vw,64px);font-weight:900;letter-spacing:-.02em}
+.lead{font-size:18px;max-width:30em;margin:20px 0 0;opacity:.95}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.badges b{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:7px 14px;border-radius:99px;font-size:14px;font-weight:600}
+.calc{background:var(--card);color:var(--ink);border-radius:28px;padding:22px;box-shadow:0 24px 60px rgba(8,8,90,.45)}
+.calc h2{font-size:18px;margin-bottom:14px}
+.box{border:2px solid var(--line);border-radius:18px;padding:12px 14px;display:flex;gap:10px;align-items:center;background:var(--bg)}
+.box:focus-within{border-color:var(--blue)}
+.box small{display:block;color:var(--mut);font-size:12px;font-weight:600}
+.box input{width:100%;border:0;background:transparent;font:800 22px Unbounded,sans-serif;color:var(--ink);outline:0;min-width:0}
+.box select{font:700 16px Manrope;border:0;background:var(--blue);color:#fff;border-radius:12px;padding:10px 8px;cursor:pointer}
+.box>div{flex:1;min-width:0}
+.box[hidden]{display:none}
+.swap{display:block;margin:-6px auto;position:relative;z-index:2;width:42px;height:42px;border-radius:50%;border:4px solid var(--card);background:var(--sun);color:#0f1030;font-size:18px;font-weight:800;cursor:pointer}
+.swap:hover{transform:rotate(180deg);transition:transform .3s}
+.meta{display:flex;justify-content:space-between;gap:10px;color:var(--mut);font-size:13px;margin:14px 2px;flex-wrap:wrap}
+.cta{width:100%;border:0;border-radius:18px;padding:16px;background:var(--blue);color:#fff;font:700 16px Unbounded,sans-serif;cursor:pointer}
+.cta:hover{background:var(--blue2)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.msg{margin-top:12px;padding:12px 14px;border-radius:14px;background:rgba(95,227,176,.2);font-weight:600;font-size:14px}
+section{padding:68px 0}
+section h2{font-size:clamp(26px,4vw,40px);margin-bottom:12px}
+.sub{color:var(--mut);max-width:36em;margin:0 0 32px}
+.tablewrap{overflow-x:auto;background:var(--card);border-radius:22px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:16px 18px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--mut);font-size:13px;font-weight:600}
+tr:last-child td{border-bottom:0}
+td b{font-family:Unbounded;font-size:15px}
+.up{color:#0f9b6a;font-weight:800}.down{color:var(--red);font-weight:800}
+.btn2{background:var(--ink);color:var(--bg);border:0;border-radius:12px;padding:9px 16px;font:700 14px Manrope;cursor:pointer}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px}
+.feat h3{font-size:18px;margin-bottom:10px}.feat p{margin:0;color:var(--mut)}
+.feat:nth-child(1){background:var(--sun);color:#0f1030;border:0}.feat:nth-child(1) p{color:#2b2b4d}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:s;border-radius:22px;overflow:hidden;background:var(--blue);color:#fff}
+.step{padding:30px 26px;counter-increment:s;border-right:1px solid rgba(255,255,255,.25)}
+.step:last-child{border:0}
+.step::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--sun);color:#0f1030;font:900 18px Unbounded;margin-bottom:14px}
+.step h3{font-size:17px;margin-bottom:8px}.step p{margin:0;opacity:.92}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin-bottom:10px}
+summary{font-weight:700;cursor:pointer}details p{margin:10px 0 0;color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}.chips b{background:var(--card);border:1px solid var(--line);padding:10px 18px;border-radius:99px;font-weight:700}
+.cta2{background:var(--blue);color:#fff;border-radius:28px;padding:44px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.cta2 h2{color:#fff;margin:0;max-width:16em}
+.cta2 a{background:var(--sun);color:#0f1030;text-decoration:none;font:700 16px Unbounded,sans-serif;padding:16px 28px;border-radius:18px}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--mut);font-size:14px}
+body{padding-bottom:110px}
+.tabbar{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;gap:4px;padding:8px;border-radius:32px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px rgba(15,16,48,.18);max-width:520px;margin:0 auto}
+.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:24px;text-decoration:none;font-size:12px;font-weight:700;color:var(--mut)}
+.tabbar a.on{background:var(--bg);color:var(--ink)}
+.tabbar svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tabbar{transition:transform .3s}.tabbar.hide{transform:translateY(160%)}
+@media(max-width:820px){.hgrid{grid-template-columns:1fr}.feats,.steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid rgba(255,255,255,.25)}.nav nav{display:none}.hero::after{width:230px;height:230px;right:-60px;top:-30px}}
+@media(max-width:520px){.box{flex-wrap:wrap}.box>div{flex:1 1 100%}.box select{flex:1 1 100%;max-width:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="wrap">
+<div class="nav"><a class="logo" href="#" style="display:flex;align-items:center;gap:8px"><b style="font-weight:inherit">Vat<span>coin</span></b></a><nav><a href="#rates">Курсы</a><a href="#news">Новости</a><a href="#why">Преимущества</a><a href="#how">Как это работает</a><a href="#faq">Вопросы</a></nav></div>
+<div class="hgrid">
+<div>
+<h1>Меняйте крипту и рубли по лучшему курсу</h1>
+<p class="lead">Обменник и биржа в одном месте: BTC, ETH, USDT, TON, SOL на рубли и между собой. Комиссия от 0,5%, заявка за 5 минут.</p>
+<div class="badges"><b>Любой банк РФ и ПМР</b><b>Комиссия от 0,5%</b><b>Поддержка 24/7</b></div>
+</div>
+<div class="calc" id="calc">
+<h2>Калькулятор обмена</h2>
+<div class="box"><div><small>Отдаёте</small><input id="amt" type="number" inputmode="decimal" value="1000" min="0" aria-label="Сумма, которую вы отдаёте"></div><select id="from" aria-label="Валюта отдаёте"></select></div>
+<button class="swap" id="swap" aria-label="Поменять местами">⇅</button>
+<div class="box"><div><small>Получаете</small><input id="out" type="text" readonly aria-label="Сумма, которую вы получите"></div><select id="to" aria-label="Валюта получаете"></select></div>
+<div class="box" id="bkbox" hidden style="margin-top:10px"><div><small>Банк получателя</small></div><select id="bk" aria-label="Банк получателя"></select></div>
+<div class="box" id="phbox" hidden style="margin-top:10px"><div><small id="phl">Номер телефона для выплаты в ПМР</small><input id="ph" type="tel" inputmode="tel" placeholder="+373 777 12 345" style="font:700 18px Manrope,sans-serif" aria-label="Номер телефона для выплаты в ПМР"></div></div>
+<div class="meta"><span id="rate"></span><span>Комиссия 0,5%</span></div>
+<button class="cta" id="go">Создать заявку</button>
+<div class="msg" id="msg" hidden></div>
+</div>
+</div>
+</div>
+</header>
+<div class="tick" aria-hidden="true"><div id="tk"></div></div>
+
+<main>
+<section id="rates"><div class="wrap">
+<h2>Курсы сейчас</h2>
+<p class="sub">Цены обновляются каждые несколько секунд. Нажмите «Обменять», и пара подставится в калькулятор.</p>
+<div class="tablewrap"><table><thead><tr><th>Монета</th><th>Купить за ₽</th><th>Продать за ₽</th><th>За 24 часа</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="sub" style="margin-top:14px;font-size:13px">Курсы на этой странице ориентировочные. Итоговый курс и реквизиты подтверждает оператор в Telegram.</p>
+</div></section>
+
+<section id="why" style="padding-top:0"><div class="wrap">
+<h2>Почему Vatcoin</h2>
+<p class="sub">Мы показываем итоговую сумму до оплаты, без скрытых комиссий.</p>
+<div class="feats">
+<div class="feat"><h3>Выгодный курс</h3><p>Курс близок к биржевому, наша маржа не больше 0,5%. Чем больше сумма, тем лучше условия.</p></div>
+<div class="feat"><h3>Быстрые выплаты</h3><p>Рубли приходят на карту или по СБП, рубли ПМР по номеру телефона, крипта на ваш кошелёк. Средняя заявка занимает 5–15 минут.</p></div>
+<div class="feat"><h3>Обмен и биржа</h3><p>Нужен быстрый обмен по текущему курсу, используйте калькулятор. Хотите выбрать цену сами, выставьте лимитную заявку на бирже.</p></div>
+</div></div></section>
+
+<section style="padding-top:0"><div class="wrap"><h2>Куда выплачиваем</h2><p class="sub">Рубли РФ и ПМР на карту или по номеру телефона.</p><div class="chips"><b>Сбербанк</b><b>Т-Банк</b><b>ВТБ</b><b>Альфа-Банк</b><b>Райффайзенбанк</b><b>Газпромбанк</b><b>СБП</b><b>Приднестровский Сбербанк</b><b>Эксимбанк</b><b>Агропромбанк</b><b>Индустриалбанк</b></div></div></section>
+<section id="how" style="padding-top:0"><div class="wrap">
+<h2>Как обменять</h2>
+<p class="sub">Три шага, регистрация не нужна для небольших сумм.</p>
+<div class="steps">
+<div class="step"><h3>Выберите пару</h3><p>Укажите, что отдаёте и что хотите получить. Итог виден сразу.</p></div>
+<div class="step"><h3>Оплатите заявку</h3><p>Отправьте заявку в Telegram, оператор подтвердит курс и пришлёт реквизиты для оплаты.</p></div>
+<div class="step"><h3>Получите обмен</h3><p>Мы отправим рубли или крипту на ваши реквизиты и пришлём подтверждение.</p></div>
+</div></div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+<h2>Частые вопросы</h2><p class="sub"></p>
+<details><summary>Сколько времени занимает обмен?</summary><p>Обычно 5–15 минут после подтверждения оплаты. Для крипты время зависит от загрузки сети.</p></details>
+<details><summary>Какие есть лимиты?</summary><p>Минимальная сумма — эквивалент 1 000 ₽. Для крупных обменов от 500 000 ₽ работает персональный курс.</p></details>
+<details><summary>Как подтверждается курс?</summary><p>После отправки заявки оператор в Telegram подтверждает итоговый курс и присылает реквизиты.</p></details>
+<details><summary>На какие банки можно получить рубли?</summary><p>На карты и счета российских банков из списка выше, по СБП и на банки ПМР по номеру телефона.</p></details>
+<details><summary>Как связаться с поддержкой?</summary><p>Напишите в Telegram: <a href="https://t.me/vatcoin1">@vatcoin1</a>.</p></details>
+</div></section>
+<section id="news" style="padding-top:0"><div class="wrap"><h2>Новости рынка</h2><p class="sub">Актуальные новости криптовалют и регулирования — у проверенных изданий.</p><div class="feats"><div class="feat"><h3>РБК Крипто</h3><p>Курсы и новости российского и мирового рынка. <a href="https://www.rbc.ru/crypto/" target="_blank" rel="noopener"><b>Читать</b></a></p></div><div class="feat"><h3>Forklog</h3><p>Блокчейн, альткоины и регулирование. <a href="https://forklog.com/" target="_blank" rel="noopener"><b>Читать</b></a></p></div><div class="feat"><h3>CoinDesk</h3><p>Аналитика и новости мировых рынков. <a href="https://www.coindesk.com/" target="_blank" rel="noopener"><b>Читать</b></a></p></div></div></div></section>
+<section style="padding-top:0"><div class="wrap"><div class="cta2"><h2>Готовы обменять?</h2><a href="#calc">Открыть калькулятор</a></div></div></section>
+</main>
+
+<nav class="tabbar" aria-label="Навигация"><a href="#calc"><svg viewBox="0 0 24 24"><path d="M7 4v14M3 14l4 4 4-4M17 20V6M13 10l4-4 4 4"/></svg>Обмен</a><a href="#rates"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg>Курсы</a><a href="#news"><svg viewBox="0 0 24 24"><path d="M4 4h13v16H6a2 2 0 0 1-2-2zM17 8h3v10a2 2 0 0 1-2 2M8 8h5M8 12h5M8 16h3"/></svg>Новости</a><a href="https://t.me/vatcoin1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"/></svg>Поддержка</a></nav>
+<footer><div class="wrap">© 2026 Vatcoin. Поддержка: <a href="https://t.me/vatcoin1">@vatcoin1</a>. Криптовалюты — рискованные активы, их цена может сильно меняться.</div></footer>
+
+<script>
+var usd={BTC:95000,ETH:3400,USDT:1,TON:5.4,SOL:190,RUB:1/82,PMR:1/16.5};
+var lbl={RUB:'Рубли РФ (RUB)',PMR:'Рубли ПМР (PMR)'};
+var chg={BTC:2.4,ETH:1.1,USDT:0.0,TON:-1.7,SOL:3.8};
+var names=Object.keys(usd),FEE=0.005;
+var $=function(i){return document.getElementById(i)};
+var f=$('from'),t=$('to');
+names.forEach(function(n){var l=lbl[n]||n;f.add(new Option(l,n));t.add(new Option(l,n))});
+f.value='USDT';t.value='RUB';
+function fmt(n){var d=n>=100?2:n>=1?4:8;return n.toLocaleString('ru-RU',{maximumFractionDigits:d})}
+function calc(){
+ rq();
+ var a=parseFloat($('amt').value)||0;
+ var r=usd[f.value]/usd[t.value];
+ $('out').value=a>0?fmt(a*r*(1-FEE)):'';
+ $('rate').textContent='1 '+f.value+' = '+fmt(r*(1-FEE))+' '+t.value;
+}
+function table(){
+ var h='';
+ ['BTC','ETH','USDT','TON','SOL'].forEach(function(n){
+  var p=usd[n]*82,c=chg[n];
+  h+='<tr><td><b>'+n+'</b></td><td>'+fmt(p*1.005)+' ₽</td><td>'+fmt(p*0.995)+' ₽</td><td class="'+(c>=0?'up':'down')+'">'+(c>=0?'+':'')+c.toFixed(1).replace('.',',')+'%</td><td><button class="btn2" data-c="'+n+'">Обменять</button></td></tr>';
+ });
+ $('tb').innerHTML=h;
+ var k='';['BTC','ETH','USDT','TON','SOL'].forEach(function(n){var c=chg[n];k+=n+' '+fmt(usd[n]*82)+' ₽  '+(c>=0?'▲':'▼')+Math.abs(c).toFixed(1)+'%        '});
+ if(!window.tk0){$('tk').textContent=k+k;window.tk0=1}
+}
+$('swap').onclick=function(){var x=f.value;f.value=t.value;t.value=x;calc()};
+[f,t].forEach(function(s){s.onchange=function(){if(f.value===t.value){t.value=f.value==='RUB'?'USDT':'RUB'}calc()}});
+$('amt').oninput=calc;
+$('go').onclick=function(){
+ var m=$('msg');m.hidden=false;
+ var ph=$('ph').value.replace(/[^0-9+]/g,'');
+ if(!$('out').value){m.textContent='Введите сумму, чтобы создать заявку.';return}
+ if((t.value==='PMR'||t.value==='RUB')&&ph.replace(/\D/g,'').length<8){m.textContent='Укажите реквизиты получателя: номер телефона или карты.';return}
+ var txt='Заявка Vatcoin: отдаю '+$('amt').value+' '+f.value+', получаю ~'+$('out').value+' '+t.value+((t.value==='PMR'||t.value==='RUB')?', банк: '+$('bk').value+', реквизиты: '+$('ph').value:'');
+ m.textContent='Заявка сформирована. Отправьте её оператору в Telegram, он подтвердит курс и реквизиты. ';
+ var a=document.createElement('a');a.href='https://t.me/vatcoin1?text='+encodeURIComponent(txt);a.target='_blank';a.rel='noopener';a.textContent='Отправить в @vatcoin1';a.style.fontWeight='800';m.appendChild(a);
+ m.scrollIntoView({behavior:'smooth',block:'nearest'});
+};
+$('tb').onclick=function(e){
+ var c=e.target.getAttribute&&e.target.getAttribute('data-c');if(!c)return;
+ f.value=c;t.value='RUB';$('amt').value=1;calc();$('calc').scrollIntoView({behavior:'smooth',block:'center'});
+};
+var banks={RUB:['Сбербанк','Т-Банк (Тинькофф)','ВТБ','Альфа-Банк','Райффайзенбанк','Газпромбанк','Любой банк по СБП'],PMR:['Приднестровский Сбербанк','Эксимбанк','Агропромбанк','Индустриалбанк','Другой банк ПМР']};
+var lastT='';
+function rq(){var k=t.value,on=(k==='RUB'||k==='PMR');$('bkbox').hidden=!on;$('phbox').hidden=!on;
+ if(on&&lastT!==k){var s=$('bk');s.innerHTML='';banks[k].forEach(function(b){s.add(new Option(b,b))});$('phl').textContent=k==='PMR'?'Номер телефона для выплаты в ПМР':'Номер карты или телефона (СБП)';$('ph').placeholder=k==='PMR'?'+373 777 12 345':'2200 0000 0000 0000 или +7 900 000 00 00';lastT=k}}
+function upd(){var r=$('tb').rows;for(var i=0;i<r.length;i++){var n=r[i].cells[0].textContent,p=usd[n]*82;r[i].cells[1].textContent=fmt(p*1.005)+' ₽';r[i].cells[2].textContent=fmt(p*0.995)+' ₽'}}
+setInterval(function(){
+ ['BTC','ETH','TON','SOL'].forEach(function(n){usd[n]*=1+(Math.random()-.5)*0.002});
+ if(document.hidden)return;
+ calc();upd();
+},4000);
+calc();table();
+var tl=document.querySelectorAll('.tabbar a[href^="#"]');
+function spy(){var y=window.scrollY+window.innerHeight*0.4,cur=tl[0];tl.forEach(function(a){var e=document.querySelector(a.getAttribute('href'));if(e&&e.getBoundingClientRect().top+window.scrollY<=y)cur=a});tl.forEach(function(a){a.className=a===cur?'on':''})}
+var ly=0,lock=0,tb=document.querySelector('.tabbar');
+document.querySelectorAll('.tabbar a').forEach(function(a){a.addEventListener('click',function(){lock=Date.now()+900;tb.classList.remove('hide')})});
+addEventListener('scroll',function(){spy();var y=scrollY;if(Date.now()<lock){ly=y;return}if(y>ly+8&&y>120)tb.classList.add('hide');else if(y<ly-8||y<120)tb.classList.remove('hide');ly=y},{passive:true});spy();
+</script>
+</body>
+</html>
